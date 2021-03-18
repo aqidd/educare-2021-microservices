@@ -12,7 +12,7 @@ app.listen(9001, () => {
     db.run(`CREATE TABLE IF NOT EXISTS outlet(
         id              INTEGER     PRIMARY KEY     AUTOINCREMENT,
         name            TEXT,
-        email           TEXT,
+        address           TEXT,
         account_id      INTEGER
     )`)
 
@@ -31,13 +31,13 @@ app.get('/outlets', (req, res) => {
     --header 'Content-Type: application/json' \
     --data-raw '{
         "name": "outlet1",
-        "email": "outlet1@gmail.com",
+        "address": "some street 123",
         "account_id": 1
     }'
  */
 app.post('/outlet', (req, res) => {
     const body = req.body
-    db.run(`INSERT INTO outlet('name', 'email', 'account_id') VALUES ('${body.name}', '${body.email}', ${body.account_id})`, (err, data) => {
+    db.run(`INSERT INTO outlet('name', 'address', 'account_id') VALUES ('${body.name}', '${body.address}', ${body.account_id})`, (err, data) => {
         if (err) {
             res.send(err);
         } else {

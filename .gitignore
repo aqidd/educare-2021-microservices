@@ -2,3 +2,6 @@
 build
 node_modules
 dist
+account/account.db
+outlet/outlet.db
+product/product.db

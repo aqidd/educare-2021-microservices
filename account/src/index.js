@@ -24,3 +24,23 @@ app.get('/accounts', (req, res) => {
         res.send(data)
     })
 })
+
+/**
+ * to call this API via terminal, you can use CURL
+ * curl --location --request POST 'localhost:9000/account' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+        "name": "johndoe",
+        "email": "john.doe@gmail.com"
+    }'
+ */
+app.post('/account', (req, res) => {
+    const body = req.body
+    db.run(`INSERT INTO account('name', 'email') VALUES ('${body.name}', '${body.email}')`, (err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send('success!');
+        }
+    })
+})
