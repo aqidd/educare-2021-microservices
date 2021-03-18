@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>single page react boilerplate</title>
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+
+<body>
+  <div id="react-app"> </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script type="text/babel">
+    var App = (props) => {
+      const [count, setCount] = React.useState(0)
+      const [data, setData] = React.useState('')
+      axios.get('/outlets').then((res, err) => {
+        setCount(res.data.length)
+        setData(JSON.stringify(res.data))
+      })
+      return (
+        <div>
+          <article>
+            Outlets count: {count}
+          </article>
+          <article>
+            Raw data: {data}
+          </article>
+        </div>
+      );
+    };
+    ReactDOM.render(
+      <App />,
+      document.getElementById('react-app')
+    );
+  </script>
+</body>
+
+</html>
