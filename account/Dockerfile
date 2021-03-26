@@ -9,5 +9,7 @@ COPY . .
 # Install dependencies
 RUN npm install
 
+RUN npm install -g nodemon
+
 EXPOSE 9000
-CMD npm start
+CMD nodemon src/index.js

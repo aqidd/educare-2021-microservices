@@ -6,8 +6,18 @@ services:
       context: account
     ports:
       - "9000:9000"
+    volumes: 
+      - ./account/src:/usr/src/app/src
   outlet:
     build: 
       context: outlet
     ports:
       - "9001:9001"
+    volumes: 
+      - ./outlet/src:/usr/src/app/src
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
